@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClientesActivity">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:background="#009688"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <LinearLayout
+            android:layout_width="359dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/caja" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="202dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Registro de Clientes"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_card_login"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="25dp"
+            android:paddingRight="30dp"
+            android:translationZ="100dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center_horizontal"
+                android:text="BIENVENIDO CLIENTE"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/txtCedulaCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese la cedula"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/txtApellidoClienteEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese los apellidos"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/txtNombreClienteEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese los nombres"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/txtTelefonoClienteEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese el teléfono"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/txtDireccionClienteEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese la direccion"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:layout_width="329dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnGuardarClientes"
+                    android:layout_width="155dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@android:drawable/ic_menu_save"
+                    android:onClick="guardarCliente"
+                    android:text="Guardar"
+                    app:backgroundTint="#44DF4A" />
+
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/btnCancelarClientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@android:drawable/ic_notification_clear_all"
+                    android:onClick="limpiarCampos"
+                    android:text="Cancelar"
+                    app:backgroundTint="#D34848" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lstClientes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
