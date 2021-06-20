@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Applogeo">
-        <activity android:name=".AgregarClienteFactura"></activity>
+        <activity android:name=".AgregarProductoFactura"></activity>
+        <activity android:name=".AgregarClienteFactura" />
         <activity android:name=".FacturacionActivity" />
-        <activity android:name=".RegistrarNuevaVentaActivity" />
+        <activity android:name=".MetodoVentaActivity" />
         <activity android:name=".EditarClienteActivity" />
         <activity android:name=".VentasActivity" />
         <activity android:name=".ProductosActivity" />

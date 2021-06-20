@@ -7,8 +7,8 @@
     tools:context=".AgregarClienteFactura">
 
         <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="729dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#009688"
             android:orientation="vertical"
             tools:ignore="MissingConstraints"
@@ -20,7 +20,7 @@
                 android:layout_height="10dp" />
 
             <LinearLayout
-                android:layout_width="378dp"
+                android:layout_width="359dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
@@ -40,10 +40,11 @@
                     android:text="Selecionar cliente"
                     android:textSize="26sp" />
             </LinearLayout>
+
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="571dp"
+                android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:background="@drawable/bg_card_login"
                 android:orientation="vertical"
@@ -56,8 +57,9 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/textView49"
                         android:layout_width="wrap_content"
@@ -71,8 +73,8 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="20dp">
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/editTextTextPersonName4"
@@ -93,13 +95,11 @@
                 </LinearLayout>
 
 
-
-
-
                 <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="304dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_height="253dp"
+                    android:layout_marginBottom="20dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
@@ -109,9 +109,9 @@
                         android:id="@+id/btnVolverClienteEditar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="volverNuevaVenta"
                         android:text="VOLVER"
-                        app:backgroundTint="#009688"
-                        />
+                        app:backgroundTint="#009688" />
                 </LinearLayout>
 
             </LinearLayout>

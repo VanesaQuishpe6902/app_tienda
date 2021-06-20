@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class RegistrarNuevaVentaActivity extends AppCompatActivity {
+public class MetodoVentaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar_nueva_venta);
+        setContentView(R.layout.activity_metodo_venta);
     }
 
     //Metodo para volver al la ventana de ventas
@@ -27,6 +27,12 @@ public class RegistrarNuevaVentaActivity extends AppCompatActivity {
     {
         Intent pantallaAgregarCliente = new Intent(getApplicationContext(), AgregarClienteFactura.class);//Creando un Intent para invocar a Cliente Activity
         startActivity(pantallaAgregarCliente); //Iniciando la pantalla Clientes
+    }
+    //Mtodo para abrir la pantalla de Facturacion
+    public void abrirPantallaFacturacion(View vista)
+    {
+        Intent pantallaFacturacion = new Intent(getApplicationContext(), FacturacionActivity.class);//Creando un Intent para invocar a Cliente Activity
+        startActivity(pantallaFacturacion); //Iniciando la pantalla Clientes
     }
 
 }
