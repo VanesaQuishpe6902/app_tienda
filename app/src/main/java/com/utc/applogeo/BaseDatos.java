@@ -17,7 +17,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     //definiendo el nombre de la bdd
     private static final String nombreBdd = "bdd_usuarios_noveno_a";
     // definiendo la version de la bdd
-    private static final int versionBdd = 3;
+    private static final int versionBdd = 1;
     //definiendo la estructura de la tabla usuario
     private static final String tablaUsuario = "create table usuario(id_usu integer primary key autoincrement, apellido_usu text, nombre_usu text," +
             " email_usu text, password_usu text)";
@@ -37,16 +37,16 @@ public class BaseDatos extends SQLiteOpenHelper {
             "estado_vent INTEGER, " +
             "fk_id_cli INTEGER, " +
             "FOREIGN KEY (fk_id_cli) REFERENCES cliente (id_cli)" +
-            ")";
+            ");";
     // D E T A L L E
-    private static final String tablaDetalle = "CREATE TABLE detalle (" +
-            "id_det INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "fk_id_venta INTEGER," +
-            "fk_id_prod INTEGER," +
-            "cantidad_det INTEGER," +
-            "FOREIGN KEY (fk_id_vent) REFERENCES venta (id_vent)," +
-            "FOREIGN KEY (fk_id_pro) REFERENCES producto (id_pro)" +
-            ")";
+    private static final String tablaDetalle = "CREATE TABLE detalle(" +
+            "id_det INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "fk_id_venta INTEGER, " +
+            "fk_id_pro INTEGER, " +
+            "cantidad_det INTEGER, " +
+            "FOREIGN KEY (fk_id_venta) REFERENCES venta (id_vent), " +
+            "FOREIGN KEY (fk_id_pro) REFERENCES producto (id_pro) " +
+            ");";
 
     //CONSTRUCTOR
     public BaseDatos(Context contexto) {
@@ -268,7 +268,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             // Actualizar cantidad de producto
             restarProductos(id_prod, cantidad);
             // Ingresar detalle
-            String sql = "INSERT INTO detalle (fk_id_venta, fk_id_prod, cantidad_det) " +
+            String sql = "INSERT INTO detalle (fk_id_venta, fk_id_pro, cantidad_det) " +
                     "VALUES (" + id_venta + "," + id_prod + "," + cantidad + ");";
             miBdd.execSQL(sql);
             // Actualizamos valores totales de la venta
