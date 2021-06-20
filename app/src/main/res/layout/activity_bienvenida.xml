@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="512px"
             android:layout_height="512px"
-            app:srcCompat="@drawable/relaxation" />
+            app:srcCompat="@drawable/tiendaslogo" />
 
         <TextView
             android:id="@+id/textView"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/aclonica"
             android:gravity="center"
-            android:text="SimplePlan"
+            android:text="Mini-Market"
             android:textColor="#FFFFFF"
             android:textSize="32sp" />
     </LinearLayout>

@@ -5,13 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MetodoVentaActivity extends AppCompatActivity {
+    BaseDatos bdd;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metodo_venta);
+        bdd = new BaseDatos(getApplicationContext());
+
     }
 
     //Metodo para volver al la ventana de ventas
@@ -31,7 +39,18 @@ public class MetodoVentaActivity extends AppCompatActivity {
     //Mtodo para abrir la pantalla de Facturacion
     public void abrirPantallaFacturacion(View vista)
     {
+        //Agregar una nueva venta al consumidor final
+        //Obturar fecha del sistema
+        String fechaRegistro = simpleDateFormat.format(new Date());
+        //Guardar en la Bdd
+        try {
+            bdd.registrarVenta(fechaRegistro, "1");
+        }
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(), "Error: " + ex.toString(), Toast.LENGTH_SHORT).show();
+        }
         Intent pantallaFacturacion = new Intent(getApplicationContext(), FacturacionActivity.class);//Creando un Intent para invocar a Cliente Activity
+        pantallaFacturacion.putExtra("id_cli","1" );
         startActivity(pantallaFacturacion); //Iniciando la pantalla Clientes
     }
 

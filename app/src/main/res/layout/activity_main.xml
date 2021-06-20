@@ -38,7 +38,7 @@
                     android:layout_height="48dp"
                     android:fontFamily="@font/aclonica"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="SimplePlan"
+                    android:text="Mini-Market"
                     android:textSize="34sp" />
 
             </LinearLayout>

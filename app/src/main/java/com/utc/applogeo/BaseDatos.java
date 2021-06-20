@@ -149,6 +149,30 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
 
     }
+    //PROCESO 6: metodo para consultar cliente existente en la BDD
+    public Cursor consultarDatosClientes(int id) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        Cursor clientes = miBDD.rawQuery("select * from cliente where id_cli = "+id+";", null);
+        if (clientes.moveToFirst()) {//verificando que el objeto usuario tenga resultados
+            return clientes; //retornar el cursor que contiene el listado de cliente
+        } else {
+            //Nose encuentra el usuario ..Porque no eexiste el email y congtrase{a
+            return null;
+        }
+
+    }
+    //PROCESO 6: metodo para consultar cliente existente en la BDD
+    public Cursor consultarDatosClientesPorNombre(String ci ) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        Cursor clientes = miBDD.rawQuery("select * from cliente where cedula_cli = '"+ci+"';", null);
+        if (clientes.moveToFirst()) {//verificando que el objeto usuario tenga resultados
+            return clientes; //retornar el cursor que contiene el listado de cliente
+        } else {
+            //Nose encuentra el usuario ..Porque no eexiste el email y congtrase{a
+            return null;
+        }
+
+    }
 
     ///PROCESO 7: Metodo para insertar datos de productos dentro de la BDD
     public boolean agregarProducto(String nombre, double precio, int iva, int stock, String fechaCaducidad) {
