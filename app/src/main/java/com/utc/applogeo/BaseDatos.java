@@ -47,6 +47,9 @@ public class BaseDatos extends SQLiteOpenHelper {
             "FOREIGN KEY (fk_id_venta) REFERENCES venta (id_vent), " +
             "FOREIGN KEY (fk_id_pro) REFERENCES producto (id_pro) " +
             ");";
+    // SEMILLA
+    private static final String ingresarConsumidorFinal = "INSERT INTO cliente (cedula_cli, apellido_cli, nombre_cli, telefono_cli,direccion_cli) " +
+            "VALUES ('1111111111','Consumidor','Final','02222222','Ninguno')";
 
     //CONSTRUCTOR
     public BaseDatos(Context contexto) {
@@ -66,6 +69,8 @@ public class BaseDatos extends SQLiteOpenHelper {
         db.execSQL(tablaVenta);
         //ejecutando el query ddl para crear la tabla Detalle con sus atributos
         db.execSQL(tablaDetalle);
+        // Ejecutar Semilla
+        db.execSQL(ingresarConsumidorFinal);
     }
 
     //PROCESO 2: Metodo que se ejecuta automaticamente cuando se detectan cambios en la versino con sus atributos
@@ -224,7 +229,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     // R E A D
     public Cursor listarVentas() {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        String sql = "select * from ventas ;";
+        String sql = "select * from venta;";
         Cursor ventas = miBDD.rawQuery(sql, null);
         if (ventas.moveToFirst()) {//verificando que el objeto ventas tenga resultados
             return ventas; //retornar el cursor que contiene el listado de ventas

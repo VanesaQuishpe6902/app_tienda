@@ -3,11 +3,13 @@ package com.utc.applogeo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,24 +19,36 @@ public class VentasActivity extends AppCompatActivity {
     // Lista
     ListView lstVentas;
     ArrayList<String> listaVentas = new ArrayList<>();
-    ArrayList<String> listaVentasOp = new ArrayList<>();
+    Cursor ventas;
+    BaseDatos bdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventas);
         // Mapear
+        bdd = new BaseDatos(getApplicationContext());
         lstVentas = (ListView) findViewById(R.id.lstVentasRealizadas);
         obtenerVentas();
     }
 
     public void obtenerVentas() {
         listaVentas.clear();
-        listaVentas.add("Prueba Titulo 1");
-        listaVentasOp.add("Prueba Titulo 2");
+        ventas = bdd.listarVentas();
+        if (ventas != null) {
+            do {
+                String id = ventas.getString(0).toString();
+                String dato1 = ventas.getString(1).toString();
+                String dato2 = ventas.getString(2).toString();
+                listaVentas.add("ID: " + id + " " + dato1 + " " + dato2);
+                ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaVentas);
+                lstVentas.setAdapter(adapter);
+            } while (ventas.moveToNext());
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaVentasOp);
-        lstVentas.setAdapter(adapter);
+        } else {
+            Toast.makeText(getApplicationContext(), "Sin datos", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     //Metodo para abrir la pantalla para realizar una nueva venta
