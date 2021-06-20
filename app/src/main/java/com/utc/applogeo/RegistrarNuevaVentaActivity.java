@@ -22,16 +22,11 @@ public class RegistrarNuevaVentaActivity extends AppCompatActivity {
         startActivity(ventanaVentas);//solicitando que se abra la ventana de gestion clientes
 
     }
-    //Mtodo para abrir la pantalla de facturacion
-    public void abrirPantallaFacturacion(View vista)
+    //Mtodo para abrir la pantalla de Agregar cliente
+    public void abrirPantallaAgregarCliente(View vista)
     {
-        Intent pantallaFacturacion = new Intent(getApplicationContext(), FacturacionActivity.class);//Creando un Intent para invocar a Cliente Activity
-        startActivity(pantallaFacturacion); //Iniciando la pantalla Clientes
+        Intent pantallaAgregarCliente = new Intent(getApplicationContext(), AgregarClienteFactura.class);//Creando un Intent para invocar a Cliente Activity
+        startActivity(pantallaAgregarCliente); //Iniciando la pantalla Clientes
     }
-    //Mtodo para abrir la pantalla de Consumidor Final
-    public void abrirPantallaConsumidorFinal(View vista)
-    {
-        Intent pantallaConsumidorFinal = new Intent(getApplicationContext(), ConsumidorFinalActivity.class);//Creando un Intent para invocar a Cliente Activity
-        startActivity(pantallaConsumidorFinal); //Iniciando la pantalla Clientes
-    }
+
 }

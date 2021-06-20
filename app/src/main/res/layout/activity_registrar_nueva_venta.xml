@@ -59,21 +59,14 @@
                 android:paddingRight="30dp"
                 android:translationZ="100dp">
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:fontFamily="@font/aclonica"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="FACTURACION"
-                    android:textSize="20sp" />
+
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:fontFamily="sans-serif"
-                    android:text="Escoja el tipo de facturación que va a realizar"
+                    android:text="Escoja el tipo método de venta que va a realizar."
                     android:textSize="16sp" />
 
                 <Space
@@ -92,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bt_login"
-                        android:onClick="abrirPantallaFacturacion"
+                        android:onClick="abrirPantallaAgregarCliente"
                         android:text="Facturación"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#5A2727"

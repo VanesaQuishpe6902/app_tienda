@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Applogeo">
         <activity android:name=".AgregarClienteFactura"></activity>
-        <activity android:name=".ConsumidorFinalActivity" />
         <activity android:name=".FacturacionActivity" />
         <activity android:name=".RegistrarNuevaVentaActivity" />
         <activity android:name=".EditarClienteActivity" />
