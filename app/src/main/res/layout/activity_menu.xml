@@ -7,8 +7,8 @@
     tools:context=".MenuActivity">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#41AAAAAA"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
@@ -61,7 +61,7 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#55B9AF"
+                android:background="#009688"
                 android:onClick="abrirPantallaCliente"
                 android:text="CLIENTES"
                 app:backgroundTint="#55B9AF" />
