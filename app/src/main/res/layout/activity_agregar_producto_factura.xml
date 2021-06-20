@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarProductoFactura">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#009688"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="359dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgEditarCliente"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/recibo" />
+
+            <TextView
+                android:id="@+id/textEditar"
+                android:layout_width="224dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/aclonica"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Selecionar Producto"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_card_login"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="25dp"
+            android:paddingRight="30dp"
+            android:translationZ="100dp">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Buscar"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Ingrese el producto"
+                        android:inputType="textPersonName" />
+
+                    <Button
+                        android:id="@+id/button9"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@android:drawable/ic_menu_search" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/btnAgregarProductoFactura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bt_login"
+                    android:drawableLeft="@android:drawable/ic_menu_add"
+                    android:text="AGREGAR"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#6CBF3D"/>
+
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="216dp"
+                android:layout_marginBottom="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnVolverClienteEditar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VOLVER"
+                    app:backgroundTint="#009688"
+                    android:onClick="volverFacturacion"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

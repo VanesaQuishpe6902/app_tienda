@@ -39,7 +39,7 @@ public class VentasActivity extends AppCompatActivity {
 
     //Metodo para abrir la pantalla para realizar una nueva venta
     public void abrirPantallaNuevaVenta(View vista) {
-        Intent pantallaNuevaVenta = new Intent(getApplicationContext(), RegistrarNuevaVentaActivity.class);//Creando un Intent para invocar a Ventas Activity
+        Intent pantallaNuevaVenta = new Intent(getApplicationContext(), MetodoVentaActivity.class);//Creando un Intent para invocar a Ventas Activity
         startActivity(pantallaNuevaVenta);//Iniciando la pantalla Ventas
     }
 

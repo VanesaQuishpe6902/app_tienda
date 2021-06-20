@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#009688"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
@@ -113,7 +113,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="60dp">
 
             <Button
                 android:id="@+id/button3"

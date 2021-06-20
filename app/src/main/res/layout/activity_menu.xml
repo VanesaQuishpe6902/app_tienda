@@ -54,7 +54,8 @@
             android:paddingLeft="30dp"
             android:paddingTop="60dp"
             android:paddingRight="30dp"
-            android:translationZ="100dp">
+            android:translationZ="100dp"
+           >
 
 
             <Button
@@ -80,15 +81,27 @@
                 android:layout_height="wrap_content"
                 android:onClick="abrirPantallaVenta"
                 android:text="VENTAS"
-                app:backgroundTint="#55B9AF" />
+                app:backgroundTint="#55B9AF"
+                android:layout_marginBottom="210dp"/>
 
-            <android.widget.Button
-                android:id="@+id/btnCerrarSesion"
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_login2"
-                android:onClick="cerrarSesion"
-                android:text="Cerrar Sesion" />
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <android.widget.Button
+                    android:id="@+id/btnCerrarSesion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bt_login2"
+                    android:gravity="center"
+                    android:onClick="cerrarSesion"
+                    android:text="Cerrar Sesion"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

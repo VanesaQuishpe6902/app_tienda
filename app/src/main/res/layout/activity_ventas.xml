@@ -13,8 +13,8 @@
 
         <LinearLayout
 
-            android:layout_width="409dp"
-            android:layout_height="729dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#009688"
             android:orientation="vertical"
             tools:ignore="MissingConstraints"
@@ -107,7 +107,8 @@
                 <ListView
                     android:id="@+id/lstVentasRealizadas"
                     android:layout_width="match_parent"
-                    android:layout_height="252dp" />
+                    android:layout_height="215dp"
+                    android:layout_marginBottom="5dp"/>
 
                 <Space
                     android:layout_width="match_parent"
