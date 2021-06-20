@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VentasActivity">
+    tools:context=".RegistrarNuevaVentaActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,7 +12,6 @@
         android:fillViewport="true">
 
         <LinearLayout
-
             android:layout_width="409dp"
             android:layout_height="729dp"
             android:background="#009688"
@@ -23,11 +22,11 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="15dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
-                android:layout_width="359dp"
-                android:layout_height="140dp"
+                android:layout_width="339dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
@@ -35,7 +34,7 @@
                     android:id="@+id/imgEditarCliente"
                     android:layout_width="158dp"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/comestibles" />
+                    app:srcCompat="@drawable/tienda" />
 
                 <TextView
                     android:id="@+id/textEditar"
@@ -43,7 +42,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/aclonica"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Ventas"
+                    android:text="TIENDA"
                     android:textSize="34sp" />
             </LinearLayout>
 
@@ -66,8 +65,16 @@
                     android:layout_height="46dp"
                     android:fontFamily="@font/aclonica"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="REGISTRO DE VENTAS"
+                    android:text="FACTURACION"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Escoja el tipo de facturación que va a realizar"
+                    android:textSize="16sp" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -75,58 +82,51 @@
 
                 <LinearLayout
                     android:layout_width="250dp"
-                    android:layout_height="58dp"
+                    android:layout_height="184dp"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btnNuevaVenta"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/btnFacturacion"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bt_login"
-                        android:onClick="abrirPantallaNuevaVenta"
-                        android:text="Nueva venta"
+                        android:onClick="abrirPantallaFacturacion"
+                        android:text="Facturación"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#5A2727"
-                        app:backgroundTint="#6CBF3D" />
-                </LinearLayout>
+                        app:backgroundTint="#F79734" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ventas realizadas"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <ListView
-                    android:id="@+id/lstVentasRealizadas"
-                    android:layout_width="match_parent"
-                    android:layout_height="252dp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-                <LinearLayout
-                    android:layout_width="250dp"
-                    android:layout_height="58dp"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
 
                     <Button
-                        android:id="@+id/btnVolverMenu"
+                        android:id="@+id/btnConsumidorFinal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="volverMenuPrincipal"
+                        android:layout_weight="1"
+                        android:background="@drawable/bt_login"
+                        android:onClick="abrirPantallaConsumidorFinal"
+                        android:text="CONSUMIDOR FINAL"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#5A2727"
+                        app:backgroundTint="#F79734" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+
+                    <Button
+                        android:id="@+id/btnVolverVenta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="volverVenta"
                         android:text="VOLVER"
                         app:backgroundTint="#009688" />
-                </LinearLayout>
 
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
