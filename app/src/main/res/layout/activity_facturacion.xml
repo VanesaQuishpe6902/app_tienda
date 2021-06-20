@@ -208,6 +208,7 @@
                                 android:layout_width="44dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/border_tabletlayout"
+                                android:paddingLeft="2dp"
                                 android:text="Cant" />
 
                             <TextView
@@ -215,6 +216,7 @@
                                 android:layout_width="128dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout"
+                                android:paddingLeft="2dp"
                                 android:text="Detalle" />
 
                             <TextView
@@ -222,6 +224,7 @@
                                 android:layout_width="74dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout"
+                                android:paddingLeft="2dp"
                                 android:text="Precio U" />
 
                             <TextView
@@ -229,6 +232,7 @@
                                 android:layout_width="73dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout"
+                                android:paddingLeft="2dp"
                                 android:text="Precio T" />
                         </TableRow>
 
@@ -541,6 +545,7 @@
                                 android:layout_span="3"
                                 android:background="@drawable/border_tabletlayout"
                                 android:gravity="end"
+                                android:paddingRight="2dp"
                                 android:text="SUBTOTAL" />
 
                             <TextView
@@ -562,6 +567,7 @@
                                 android:layout_span="3"
                                 android:background="@drawable/border_tabletlayout"
                                 android:gravity="end"
+                                android:paddingRight="2dp"
                                 android:text="IVA 12%" />
 
                             <TextView
@@ -583,6 +589,7 @@
                                 android:layout_span="3"
                                 android:background="@drawable/border_tabletlayout"
                                 android:gravity="end"
+                                android:paddingRight="2dp"
                                 android:text="TOTAL" />
 
                             <TextView
