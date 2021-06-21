@@ -40,100 +40,183 @@
                 android:textSize="26sp" />
         </LinearLayout>
 
-        <LinearLayout
-
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:background="@drawable/bg_card_login"
-            android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingTop="25dp"
-            android:paddingRight="30dp"
-            android:translationZ="100dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView49"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Buscar"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                android:orientation="vertical" >
 
                 <LinearLayout
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
+                    android:layout_margin="15dp"
+                    android:background="@drawable/bg_card_login"
+                    android:orientation="vertical"
+                    android:paddingLeft="30dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="30dp"
+                    android:translationZ="100dp">
 
-                    <EditText
-                        android:id="@+id/txtTelefonoFacturacion"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="Ingrese el producto"
-                        android:inputType="textPersonName" />
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Paso 1 Seleccione un producto:" />
+
+                        <TextView
+                            android:id="@+id/textView49"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Buscar"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtBuscarProductoFacturacion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:hint="Ingrese el producto"
+                                android:inputType="textPersonName" />
+
+                            <Button
+                                android:id="@+id/button9"
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:drawableRight="@android:drawable/ic_menu_search" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="235dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/lstSeleccionarProducto"
+                        android:layout_width="match_parent"
+                        android:layout_height="216dp"
+                        android:layout_marginBottom="20dp">
+
+                    </ListView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView52"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Paso 2 Ingresa la cantidad" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/txtNumProductosVenta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:ems="12"
+                                android:inputType="number" />
+
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+
+                            <Button
+                                android:id="@+id/button8"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:drawableTop="@android:drawable/ic_menu_add"
+                                android:onClick="comprobarExistencias"
+                                android:textColor="#FFFFFF" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView53"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Paso 3 Confirma los datos" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtConfirmarDatos"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="galleta Oreo x 10 uni. 7.50"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <Button
-                        android:id="@+id/button9"
-                        android:layout_width="50dp"
+                        android:id="@+id/btnAgregarProductoFactura"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@android:drawable/ic_menu_search" />
+                        android:background="@drawable/bt_login"
+                        android:onClick="confirmarRegistroProducto"
+                        android:text="Confirmar"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#6CBF3D" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btnVolverClienteEditar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="volverFacturacion"
+                            android:text="VOLVER"
+                            app:backgroundTint="#009688" />
+                    </LinearLayout>
+
 
                 </LinearLayout>
             </LinearLayout>
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="235dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:layout_marginBottom="10dp">
-
-                <Button
-                    android:id="@+id/btnAgregarProductoFactura"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bt_login"
-                    android:drawableLeft="@android:drawable/ic_menu_add"
-                    android:text="AGREGAR"
-                    android:textColor="#FFFFFF"
-                    app:backgroundTint="#6CBF3D"/>
-
-            </LinearLayout>
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="216dp"
-                android:layout_marginBottom="20dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btnVolverClienteEditar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="VOLVER"
-                    app:backgroundTint="#009688"
-                    android:onClick="volverFacturacion"/>
-            </LinearLayout>
-
-
-
-        </LinearLayout>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />

@@ -49,7 +49,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             ");";
     // SEMILLA
     private static final String ingresarConsumidorFinal = "INSERT INTO cliente (cedula_cli, apellido_cli, nombre_cli, telefono_cli,direccion_cli) " +
-            "VALUES ('1111111111','Consumidor','Final','02222222','Ninguno')";
+            "VALUES ('1111111111','Final','Consumidor','02222222','Ninguno')";
 
     //CONSTRUCTOR
     public BaseDatos(Context contexto) {
@@ -149,10 +149,11 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
 
     }
+
     //PROCESO 6: metodo para consultar cliente existente en la BDD
     public Cursor consultarDatosClientes(int id) {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        Cursor clientes = miBDD.rawQuery("select * from cliente where id_cli = "+id+";", null);
+        Cursor clientes = miBDD.rawQuery("select * from cliente where id_cli = " + id + ";", null);
         if (clientes.moveToFirst()) {//verificando que el objeto usuario tenga resultados
             return clientes; //retornar el cursor que contiene el listado de cliente
         } else {
@@ -161,10 +162,11 @@ public class BaseDatos extends SQLiteOpenHelper {
         }
 
     }
+
     //PROCESO 6: metodo para consultar cliente existente en la BDD
-    public Cursor consultarDatosClientesPorNombre(String ci ) {
+    public Cursor consultarDatosClientesPorNombre(String ci) {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        Cursor clientes = miBDD.rawQuery("select * from cliente where cedula_cli = '"+ci+"';", null);
+        Cursor clientes = miBDD.rawQuery("select * from cliente where cedula_cli = '" + ci + "';", null);
         if (clientes.moveToFirst()) {//verificando que el objeto usuario tenga resultados
             return clientes; //retornar el cursor que contiene el listado de cliente
         } else {
@@ -191,6 +193,18 @@ public class BaseDatos extends SQLiteOpenHelper {
     public Cursor obtenerProducto() {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
         Cursor productos = miBDD.rawQuery("select * from producto;", null);
+        if (productos.moveToFirst()) {//verificando que el objeto producto tenga resultados
+            return productos; //retornar el cursor que contiene el listado de producto
+        } else {
+            //Nose encuentra el producto
+            return null;
+        }
+
+    }
+
+    public Cursor obtenerProductoId(int id) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        Cursor productos = miBDD.rawQuery("select * from producto WHERE id_pro = '" + id + "';", null);
         if (productos.moveToFirst()) {//verificando que el objeto producto tenga resultados
             return productos; //retornar el cursor que contiene el listado de producto
         } else {
@@ -264,6 +278,32 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     }
 
+    public Cursor buscarVenta(String id) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        String sql = "select * from venta WHERE id_vent = '" + id + "';";
+        Cursor ventas = miBDD.rawQuery(sql, null);
+        if (ventas.moveToFirst()) {//verificando que el objeto ventas tenga resultados
+            return ventas; //retornar el cursor que contiene el listado de ventas
+        } else {
+            //Nose encuentra ventas
+            return null;
+        }
+
+    }
+
+    public Cursor buscarVentasFecha(String fecha) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        String sql = "select * from venta WHERE f_vent = '" + fecha + "';";
+        Cursor ventas = miBDD.rawQuery(sql, null);
+        if (ventas.moveToFirst()) {//verificando que el objeto ventas tenga resultados
+            return ventas; //retornar el cursor que contiene el listado de ventas
+        } else {
+            //Nose encuentra ventas
+            return null;
+        }
+
+    }
+
     // U P D A T E
     public boolean cambiarEstadoVenta(String id, int estado) {
         SQLiteDatabase miBdd = getWritableDatabase();
@@ -280,7 +320,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         return false;
     }
 
-    //  G E S T I O N    V E N T A S
+    //  G E S T I O N    D E T A L L E S
     /*
      * Metodos
      * Create => Registrar detalle (registrarDetalle(String id_venta, id_producto, int cantidad))
@@ -298,7 +338,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             restarProductos(id_prod, cantidad);
             // Ingresar detalle
             String sql = "INSERT INTO detalle (fk_id_venta, fk_id_pro, cantidad_det) " +
-                    "VALUES (" + id_venta + "," + id_prod + "," + cantidad + ");";
+                    "VALUES ('" + id_venta + "','" + id_prod + "'," + cantidad + ");";
             miBdd.execSQL(sql);
             // Actualizamos valores totales de la venta
             calcularTotalesVenta(id_venta);
@@ -349,55 +389,52 @@ public class BaseDatos extends SQLiteOpenHelper {
     }
 
     // SUBMETODOS
-    // Validacion de que exista la cantidad que se desea ingresar
-    public boolean comprobarCantidad(int id, int cantidad) {
-        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        String sql = "select * from producto WHERE id_pro = " + id + ";";
-        Cursor productos = miBDD.rawQuery(sql, null);
-        if (productos != null) {//verificando que el objeto producto tenga resultados
-            if (cantidad <= Integer.parseInt(productos.getString(3))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // Submetodo que ayudará a restar el stock del producto
     public void restarProductos(int id, int cantidad) {
         int nuevaCantidad = 0;
         SQLiteDatabase miBdd = getWritableDatabase();
         if (miBdd != null) {
             // Obtener informacion del producto
-            String sql = "SELECT * FROM producto WHERE id_pro = " + id;
-            Cursor producto = miBdd.rawQuery(sql, null);
+            Cursor producto = obtenerProductoId(id);
             // Calcular nueva cantidad
-            nuevaCantidad = Integer.parseInt(producto.getString(2)) - cantidad;
+            nuevaCantidad = Integer.parseInt(producto.getString(4)) - cantidad;
             // Actualizar cantidad del producto
             String sqlActualizarProducto = "UPDATE producto " +
-                    "SET stock_pro = " + nuevaCantidad + "," +
-                    "WHERE = " + id;
+                    "SET stock_pro = " + nuevaCantidad + " " +
+                    "WHERE id_pro = '" + id + "';";
             miBdd.execSQL(sqlActualizarProducto);
 
         }
     }
 
-    // Submetodo que ayudará a regreesar el producti al stock
+    // Submetodo que ayudará a regresar el producti al stock
     public void regresarProducto(int id, int cantidad) {
         int nuevaCantidad = 0;
         SQLiteDatabase miBdd = getWritableDatabase();
         if (miBdd != null) {
             // Obtener informacion del producto
-            String sql = "SELECT * FROM producto WHERE id_pro = " + id;
-            Cursor producto = miBdd.rawQuery(sql, null);
+            Cursor producto = obtenerProductoId(id);
             // Calcular nueva cantidad
-            nuevaCantidad = Integer.parseInt(producto.getString(2)) + cantidad;
+            nuevaCantidad = Integer.parseInt(producto.getString(4)) + cantidad;
             // Actualizar cantidad del producto
             String sqlActualizarProducto = "UPDATE producto " +
-                    "SET stock_pro = " + nuevaCantidad + "," +
-                    "WHERE = " + id;
+                    "SET stock_pro = " + nuevaCantidad + " " +
+                    "WHERE id_pro = '" + id + "';";
             miBdd.execSQL(sqlActualizarProducto);
 
         }
+    }
+
+    public Cursor listarVentas(int id_venta) {
+        SQLiteDatabase miBDD = getReadableDatabase();
+        String sqlListaProducto = "SELECT * FROM detalle WHERE fk_id_venta = '" + id_venta + "';";
+        Cursor listaVentas = miBDD.rawQuery(sqlListaProducto, null);
+        if (listaVentas.moveToFirst()) {
+            return listaVentas;
+        } else {
+            return null;
+        }
+
     }
 
     // Submetodo que ayudará a calcular el subtotal, iva y el total de la venta
@@ -406,15 +443,14 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase miBdd = getWritableDatabase();
         if (miBdd != null) {
             // Obtener lista de productos
-            String sqlListaProducto = "SELECT * FROM detalle WHERE fk_id_venta = " + id_venta;
-            Cursor listaProductos = miBdd.rawQuery(sqlListaProducto, null);
+
+            Cursor listaProductos = listarVentas(id_venta);
             if (listaProductos != null) {
                 do {
                     // Obtener informacion de la venta
-                    String sqlInfoProd = "SELECT * FROM producto WHERE id_pro = " + Integer.parseInt(listaProductos.getString(2));
-                    Cursor infoProducto = miBdd.rawQuery(sqlInfoProd, null);
+                    Cursor infoProducto = obtenerProductoId(Integer.parseInt(listaProductos.getString(2)));
                     // Calcular subtotal
-                    int valor = Integer.parseInt(infoProducto.getString(2)) * Integer.parseInt(listaProductos.getString(3));
+                    double valor = Double.parseDouble(infoProducto.getString(2)) * Integer.parseInt(listaProductos.getString(3));
                     subtotal = subtotal + valor;
 
                     // Actualizar informacion de venta
@@ -428,7 +464,7 @@ public class BaseDatos extends SQLiteOpenHelper {
                         "subtotal_vent = " + subtotal + ", " +
                         "iva_vent = " + iva + ", " +
                         "total_vent = " + total + " " +
-                        "WHERE id_vent = " + id_venta;
+                        "WHERE id_vent = '" + id_venta + "';";
                 miBdd.execSQL(sqlActualizarVenta);
             }
             miBdd.close();

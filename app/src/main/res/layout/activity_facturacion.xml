@@ -81,7 +81,47 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/textView11"
+                                android:id="@+id/textView112"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="# Venta"
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/txtIdVenta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView1131"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha"
+                                android:textColor="#000000"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/txtFechaVenta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView11123"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cedula"
@@ -101,7 +141,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/textView16"
+                                android:id="@+id/textView161"
                                 android:layout_width="82dp"
                                 android:layout_height="wrap_content"
                                 android:text="Nombres:"
@@ -129,7 +169,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/txtTelefonoFacturacion"
+                                android:id="@+id/txtBuscarProductoFacturacion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#000000"
@@ -159,10 +199,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bt_login"
+                        android:onClick="abrirPantallaAgregarProductos"
                         android:text="AGREGAR productos"
                         android:textColor="#FFFFFF"
-                        app:backgroundTint="#6CBF3D"
-                        android:onClick="abrirPantallaAgregarProductos"/>
+                        app:backgroundTint="#6CBF3D" />
 
                 </LinearLayout>
 
@@ -180,9 +220,9 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
                         android:visibility="visible"
-                        tools:visibility="visible"
-                        android:layout_marginBottom="20dp">
+                        tools:visibility="visible">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -190,7 +230,7 @@
                             android:background="@drawable/border_tabletlayout">
 
                             <TextView
-                                android:id="@+id/textView18"
+                                android:id="@+id/textView181"
                                 android:layout_width="44dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/border_tabletlayout"
@@ -198,7 +238,7 @@
                                 android:text="Cant" />
 
                             <TextView
-                                android:id="@+id/textView19"
+                                android:id="@+id/textView191"
                                 android:layout_width="128dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout"
@@ -206,7 +246,7 @@
                                 android:text="Detalle" />
 
                             <TextView
-                                android:id="@+id/textView20"
+                                android:id="@+id/textView201"
                                 android:layout_width="74dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout"
@@ -431,6 +471,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout" />
                         </TableRow>
+
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -460,6 +501,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout" />
                         </TableRow>
+
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -489,6 +531,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border_tabletlayout" />
                         </TableRow>
+
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -591,8 +634,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <Button
                         android:id="@+id/btnVolverVenta"

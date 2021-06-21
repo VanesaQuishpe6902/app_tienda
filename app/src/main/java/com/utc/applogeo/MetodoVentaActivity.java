@@ -3,6 +3,7 @@ package com.utc.applogeo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -30,27 +31,31 @@ public class MetodoVentaActivity extends AppCompatActivity {
         startActivity(ventanaVentas);//solicitando que se abra la ventana de gestion clientes
 
     }
+
     //Mtodo para abrir la pantalla de Agregar cliente
-    public void abrirPantallaAgregarCliente(View vista)
-    {
+    public void abrirPantallaAgregarCliente(View vista) {
         Intent pantallaAgregarCliente = new Intent(getApplicationContext(), AgregarClienteFactura.class);//Creando un Intent para invocar a Cliente Activity
         startActivity(pantallaAgregarCliente); //Iniciando la pantalla Clientes
     }
+
     //Mtodo para abrir la pantalla de Facturacion
-    public void abrirPantallaFacturacion(View vista)
-    {
+    public void abrirPantallaFacturacion(View vista) {
         //Agregar una nueva venta al consumidor final
         //Obturar fecha del sistema
         String fechaRegistro = simpleDateFormat.format(new Date());
         //Guardar en la Bdd
         try {
             bdd.registrarVenta(fechaRegistro, "1");
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             Toast.makeText(getApplicationContext(), "Error: " + ex.toString(), Toast.LENGTH_SHORT).show();
         }
         Intent pantallaFacturacion = new Intent(getApplicationContext(), FacturacionActivity.class);//Creando un Intent para invocar a Cliente Activity
-        pantallaFacturacion.putExtra("id_cli","1" );
+        pantallaFacturacion.putExtra("id_cli", "1");
+        // Obtener id de la venta
+        Cursor venta = bdd.buscarVentasFecha(fechaRegistro);
+        String id_vent = venta.getString(0);
+        pantallaFacturacion.putExtra("id_venta", id_vent);
+
         startActivity(pantallaFacturacion); //Iniciando la pantalla Clientes
     }
 

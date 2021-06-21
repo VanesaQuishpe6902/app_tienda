@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,6 +31,18 @@ public class VentasActivity extends AppCompatActivity {
         bdd = new BaseDatos(getApplicationContext());
         lstVentas = (ListView) findViewById(R.id.lstVentasRealizadas);
         obtenerVentas();
+        lstVentas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                ventas.moveToPosition(position);
+                //Toast.makeText(getApplicationContext(), "hola" + ventas.getString(0) + ventas.getString(6), Toast.LENGTH_SHORT).show();
+                finish();
+                Intent verVenta = new Intent(getApplicationContext(), FacturacionActivity.class);
+                verVenta.putExtra("id_venta", ventas.getString(0));
+                verVenta.putExtra("id_cli", ventas.getString(6));
+                startActivity(verVenta);//Iniciando la pantalla Ventas
+            }
+        });
     }
 
     public void obtenerVentas() {
