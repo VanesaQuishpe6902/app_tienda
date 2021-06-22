@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductosActivity">
-
+    tools:context=".EditarProductoActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/aclonica"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Registro de Productos"
+                android:text="Editar Producto"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -57,8 +56,29 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ID: "
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtIDProductoEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
                     <EditText
-                        android:id="@+id/txtNombreProducto"
+                        android:id="@+id/txtNombreProductoEditar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -66,7 +86,7 @@
                         android:inputType="textPersonName" />
 
                     <EditText
-                        android:id="@+id/txtPrecioProducto"
+                        android:id="@+id/txtPrecioProductoEditar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -79,7 +99,7 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:id="@+id/txtStockProducto"
+                            android:id="@+id/txtStockProductoEditar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -87,7 +107,7 @@
                             android:inputType="number" />
 
                         <CheckBox
-                            android:id="@+id/btnIvaProducto"
+                            android:id="@+id/btnIvaProductoEditar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="IVA" />
@@ -105,7 +125,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/btnCaducidadProducto"
+                        android:id="@+id/btnCaducidadProductoEditar"
                         style="?android:spinnerStyle"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
@@ -130,8 +150,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@android:drawable/ic_menu_save"
-                            android:onClick="guardarProducto"
-                            android:text="GUARDAR"
+                            android:onClick="editarProducto"
+                            android:text="Editar"
+                            android:textColor="#FFFFFF"
                             android:textColorLink="#000000"
                             app:backgroundTint="#6CBF3D" />
 
@@ -145,18 +166,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@android:drawable/presence_offline"
-                            android:onClick="limpiarCamposProducto"
-                            android:text="CANCELAR"
+                            android:onClick="eliminarProducto"
+                            android:text="Eliminar"
+                            android:textColor="#FFFFFF"
                             app:backgroundTint="#F73D2F" />
                     </LinearLayout>
-
-                    <ListView
-                        android:id="@+id/lstProducto"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginBottom="10dp">
-
-                    </ListView>
 
                     <Button
                         android:id="@+id/button11"
@@ -172,5 +186,4 @@
 
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

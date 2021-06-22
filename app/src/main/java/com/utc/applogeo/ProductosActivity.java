@@ -4,16 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -31,10 +33,11 @@ descripcion: Actividad para gestionar los productos dentro la base de datos SQLi
 public class ProductosActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    Cursor productosObtenidos;
 
     //ENTRADA DE DATOS
     EditText txtNombreProducto, txtPrecioProducto, txtStockProducto;
-    RadioButton btnIvaProducto;
+    CheckBox btnIvaProducto;
     //SALIDA
     ListView lstProducto;
     BaseDatos bdd;
@@ -47,7 +50,7 @@ public class ProductosActivity extends AppCompatActivity {
         //MAPEO DE ELEMENTOS
         txtNombreProducto = (EditText) findViewById(R.id.txtNombreProducto);
         txtPrecioProducto = (EditText) findViewById(R.id.txtPrecioProducto);
-        btnIvaProducto = (RadioButton) findViewById(R.id.btnIvaProducto);
+        btnIvaProducto = (CheckBox) findViewById(R.id.btnIvaProducto);
         txtStockProducto = (EditText) findViewById(R.id.txtStockProducto);
         lstProducto = (ListView) findViewById(R.id.lstProducto);
         //Calendario
@@ -57,6 +60,22 @@ public class ProductosActivity extends AppCompatActivity {
         bdd = new BaseDatos(getApplicationContext());
         //llamando al metodo para cargar  los datos productos en el ListView
         consultarDatosProducto();
+        // Funcion onClic
+        lstProducto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                productosObtenidos.moveToPosition(position);
+                String idProd = productosObtenidos.getString(0);
+                //Toast.makeText(ProductosActivity.this, "ID" + idProd, Toast.LENGTH_SHORT).show();
+                finish();
+                //
+                Intent detalleProducto = new Intent(getApplicationContext(), EditarProductoActivity.class);
+                //
+                detalleProducto.putExtra("id_pro", idProd);
+                //
+                startActivity(detalleProducto);
+            }
+        });
 
     }
 
@@ -109,6 +128,8 @@ public class ProductosActivity extends AppCompatActivity {
         txtPrecioProducto.setText("");
         txtStockProducto.setText("");
         txtNombreProducto.requestFocus();
+        btnIvaProducto.setChecked(false);
+        dateButton.setText(getTodaysDate());
     }
 
     //Validacion para numero enteros
@@ -164,9 +185,9 @@ public class ProductosActivity extends AppCompatActivity {
             String sDay = parts[0];
             String sMonth = parts[1];
             String sYear = parts[2];
-            int iDay = Integer.parseInt(sDay) - 1900;
+            int iYear = Integer.parseInt(sYear) - 1900;
             int iMonth = Integer.parseInt(sMonth) - 1;
-            int iYear = Integer.parseInt(sYear);
+            int iDay = Integer.parseInt(sDay);
             Date fecha = new Date(iYear, iMonth, iDay);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String fechaCaducidadP = simpleDateFormat.format(fecha);
@@ -181,7 +202,7 @@ public class ProductosActivity extends AppCompatActivity {
 
     public void consultarDatosProducto() {
         listaProducto.clear();//Vaciando el listado de productos
-        Cursor productosObtenidos = bdd.obtenerProducto(); //Consultando producto y guardandolo en un cursor
+        productosObtenidos = bdd.obtenerProducto(); //Consultando producto y guardandolo en un cursor
         if (productosObtenidos != null)//verificando que haya datos
         {
             //Proceso para cuando se encuentren productos registrados
@@ -198,5 +219,9 @@ public class ProductosActivity extends AppCompatActivity {
         } else {
             Toast.makeText((getApplicationContext()), "No se ha registrado algun producto", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void volver(View vista) {
+        finish();
     }
 }

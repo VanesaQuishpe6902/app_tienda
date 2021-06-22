@@ -214,6 +214,48 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     }
 
+    public Cursor obtenerProductoNombre(String datos) {
+        SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
+        Cursor productos = miBDD.rawQuery("select * from producto " +
+                "WHERE nombre_pro LIKE '%" + datos + "%';", null);
+        if (productos.moveToFirst()) {//verificando que el objeto producto tenga resultados
+            return productos; //retornar el cursor que contiene el listado de producto
+        } else {
+            //Nose encuentra el producto
+            return null;
+        }
+
+    }
+
+    public boolean editarProducto(int id, String nombre, double precioP, int iva, int stockP, String fechaCaducidadP) {
+        String sql = "UPDATE producto SET " +
+                "nombre_pro = '" + nombre + "', " +
+                "precio_pro = " + precioP + ", " +
+                "iva_pro = " + iva + ", " +
+                "stock_pro = " + stockP + "," +
+                "fechacaducidad_pro = '" + fechaCaducidadP + "' " +
+                "WHERE id_pro = '" + id + "';";
+        SQLiteDatabase miBdd = getWritableDatabase();
+        if (miBdd != null) {
+            miBdd.execSQL(sql);
+            miBdd.close(); //cerrando la conexion con la bdd
+            return true; //regresando verdadero ya que el proceso d actualizacion fue exitosa
+        }
+        return false; //retorna falso cuando no existe la bdd
+    }
+
+    //Metodo para eliminar un registro de producto
+    public boolean eliminarProducto(String id) {
+        SQLiteDatabase miBdd = getWritableDatabase(); //objeto para manejar la bdd
+        if (miBdd != null) //validando que la bdd exista
+        {
+            miBdd.execSQL("DELETE FROM producto WHERE id_pro= '" + id + "';"); //ejecutar el query de eliminacion
+            miBdd.close(); //cerrando la conexion con la bdd
+            return true; //regresando verdadero ya que el proceso d actualizacion fue exitosa
+        }
+        return false; //retorna falso cuando no existe la bdd
+    }
+
     ///Metodo para actualizar el registro del cliente
     public boolean acualizarCliente(String cedula, String apellido, String nombre, String telefono, String direccion, String id) {
         SQLiteDatabase miBdd = getWritableDatabase(); //objeto para manejar la base de datos
@@ -267,7 +309,10 @@ public class BaseDatos extends SQLiteOpenHelper {
     // R E A D
     public Cursor listarVentas() {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        String sql = "select * from venta;";
+        String sql = "select * from venta " +
+                "INNER JOIN cliente " +
+                "ON venta.fk_id_cli = cliente.id_cli " +
+                "ORDER BY id_vent DESC;";
         Cursor ventas = miBDD.rawQuery(sql, null);
         if (ventas.moveToFirst()) {//verificando que el objeto ventas tenga resultados
             return ventas; //retornar el cursor que contiene el listado de ventas
@@ -306,16 +351,27 @@ public class BaseDatos extends SQLiteOpenHelper {
 
     // U P D A T E
     public boolean cambiarEstadoVenta(String id, int estado) {
+        String sql;
         SQLiteDatabase miBdd = getWritableDatabase();
-        String sql = "UPDATE venta SET " +
-                "estado_vent = " + estado + "," + // 0 En curso, 1 Finaliado, 2 Anulado
-                "WHERE id_vent = " + id;
         if (miBdd != null) {
+            sql = "UPDATE venta SET " +
+                    "estado_vent = " + estado + " " + // 0 En curso, 1 Finaliado
+                    "WHERE id_vent = '" + id + "';";
+
             miBdd.execSQL(sql);
-            /*
-             * Disminuir la cantidad de productos
-             * */
             miBdd.close();
+        }
+        return false;
+    }
+
+    public boolean eliminarVenta(String id) {
+        String sql = "";
+        SQLiteDatabase miBdd = getWritableDatabase();
+        if (miBdd != null) {
+            sql = "DELETE FROM venta WHERE id_vent = '" + id + "';";
+            miBdd.execSQL(sql);
+            miBdd.close();
+            return true;
         }
         return false;
     }
@@ -352,7 +408,23 @@ public class BaseDatos extends SQLiteOpenHelper {
     // R E A D
     public Cursor listarDetalle(String id_venta) {
         SQLiteDatabase miBdd = getReadableDatabase();
-        String sql = "SELECT * FROM detalle WHERE fk_id_venta = " + id_venta;
+        String sql = "SELECT * FROM detalle " +
+                "INNER JOIN producto " +
+                "ON detalle.fk_id_pro = producto.id_pro " +
+                "WHERE fk_id_venta = '" + id_venta + "';";
+        Cursor detalle = miBdd.rawQuery(sql, null);
+        if (detalle.moveToFirst()) {//verificando que el objeto ventas tenga resultados
+            return detalle; //retornar el cursor que contiene el listado de ventas
+        } else {
+            //Nose encuentra datos
+            return null;
+        }
+    }
+
+    public Cursor buscarDetalle(int id) {
+        SQLiteDatabase miBdd = getReadableDatabase();
+        String sql = "SELECT * FROM detalle " +
+                "WHERE id_det = '" + id + "';";
         Cursor detalle = miBdd.rawQuery(sql, null);
         if (detalle.moveToFirst()) {//verificando que el objeto ventas tenga resultados
             return detalle; //retornar el cursor que contiene el listado de ventas
@@ -369,19 +441,20 @@ public class BaseDatos extends SQLiteOpenHelper {
         if (miBdd != null) //validando que la bdd exista
         {
             // Obtener informacion del producto a traves del detalle
-            String sqlInfoProducto = "SELECT * FROM detalle WHERE id_det = " + id;
-            Cursor infoProducto = miBdd.rawQuery(sqlInfoProducto, null);
+            Cursor infoProducto = buscarDetalle(id);
+            // Obtener id de la venta
+            int idVent = Integer.parseInt(infoProducto.getString(1));
             // Obtener id del producto
             int idProd = Integer.parseInt(infoProducto.getString(2));
             // Obtener cantidad vendida
-            int cantProdVendida = Integer.parseInt(infoProducto.getString(2));
+            int cantProdVendida = Integer.parseInt(infoProducto.getString(3));
             // Regresar producto
             regresarProducto(idProd, cantProdVendida);
             // Elimina registro
-            String sql = "DELETE FROM detalle WHERE id_det=" + id;
+            String sql = "DELETE FROM detalle WHERE id_det = '" + id + "';";
             miBdd.execSQL(sql);
             // Actualizamos valores totales de la venta
-            calcularTotalesVenta(Integer.parseInt(infoProducto.getString(1)));
+            calcularTotalesVenta(idVent);
             miBdd.close(); //cerrando la conexion con la bdd
             return true; //regresando verdadero ya que el proceso de actualizacion fue exitosa
         }
@@ -403,7 +476,6 @@ public class BaseDatos extends SQLiteOpenHelper {
                     "SET stock_pro = " + nuevaCantidad + " " +
                     "WHERE id_pro = '" + id + "';";
             miBdd.execSQL(sqlActualizarProducto);
-
         }
     }
 
@@ -443,7 +515,6 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase miBdd = getWritableDatabase();
         if (miBdd != null) {
             // Obtener lista de productos
-
             Cursor listaProductos = listarVentas(id_venta);
             if (listaProductos != null) {
                 do {
@@ -455,19 +526,18 @@ public class BaseDatos extends SQLiteOpenHelper {
 
                     // Actualizar informacion de venta
                 } while (listaProductos.moveToNext());
-                // Calcular IVA
-                iva = subtotal * 0.12;
-                // Calcular Total
-                total = subtotal + iva;
-                // Guardo en la base de datos
-                String sqlActualizarVenta = "UPDATE venta SET " +
-                        "subtotal_vent = " + subtotal + ", " +
-                        "iva_vent = " + iva + ", " +
-                        "total_vent = " + total + " " +
-                        "WHERE id_vent = '" + id_venta + "';";
-                miBdd.execSQL(sqlActualizarVenta);
             }
-            miBdd.close();
+            // Calcular IVA
+            iva = subtotal * 0.12;
+            // Calcular Total
+            total = subtotal + iva;
+            // Guardo en la base de datos
+            String sqlActualizarVenta = "UPDATE venta SET " +
+                    "subtotal_vent = " + subtotal + ", " +
+                    "iva_vent = " + iva + ", " +
+                    "total_vent = " + total + " " +
+                    "WHERE id_vent = '" + id_venta + "';";
+            miBdd.execSQL(sqlActualizarVenta);
         }
     }
 

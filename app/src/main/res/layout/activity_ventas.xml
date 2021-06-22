@@ -100,6 +100,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Cliente | Fecha de venta" />
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
@@ -107,8 +113,8 @@
                 <ListView
                     android:id="@+id/lstVentasRealizadas"
                     android:layout_width="match_parent"
-                    android:layout_height="215dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_height="197dp"
+                    android:layout_marginBottom="5dp" />
 
                 <Space
                     android:layout_width="match_parent"

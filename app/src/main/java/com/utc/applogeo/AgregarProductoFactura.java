@@ -13,9 +13,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AgregarProductoFactura extends AppCompatActivity {
+    // Formatear valores double
+    String pattern = "##.##";
+    DecimalFormat decimalFormat = new DecimalFormat(pattern);
+
     String idCli, idVenta;
     Cursor infoCliente, productos;
     BaseDatos bdd;
@@ -63,11 +68,17 @@ public class AgregarProductoFactura extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 productos.moveToPosition(position);
-                idProd = Integer.parseInt(productos.getString(0));
-                nombreProducto = productos.getString(1);
-                unidadesExistentes = Integer.parseInt(productos.getString(4));
-                precio = Double.parseDouble(productos.getString(2));
-                txtConfirmarDatos.setText(nombreProducto);
+                // Calcular si hay unidades existentes
+                if (Integer.parseInt(productos.getString(4)) > 0) {
+                    idProd = Integer.parseInt(productos.getString(0));
+                    nombreProducto = productos.getString(1);
+                    unidadesExistentes = Integer.parseInt(productos.getString(4));
+                    precio = Double.parseDouble(productos.getString(2));
+                    txtConfirmarDatos.setText(nombreProducto);
+                } else {
+                    Toast.makeText(AgregarProductoFactura.this, "Unidades insuficientes!", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -131,28 +142,61 @@ public class AgregarProductoFactura extends AppCompatActivity {
             unidadesVendidas = Integer.parseInt(unidades);
             precioTotal = precio * unidadesVendidas;
             // Concatenar resultados
-            txtConfirmarDatos.setText(nombreProducto + " x " + unidades + "uni. total: $" + precioTotal);
+            txtConfirmarDatos.setText(nombreProducto + " x " + unidades + "uni. total: $" + decimalFormat.format(precioTotal));
         }
     }
 
     public void confirmarRegistroProducto(View vista) {
         if (idProd != -1 && unidadesVendidas > 0) {
-            Toast.makeText(this, "id_vent" + idVenta + "id_pro" + idProd + "cantidad" + unidadesVendidas, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "id_vent" + idVenta + "id_pro" + idProd + "cantidad" + unidadesVendidas, Toast.LENGTH_SHORT).show();
             try {
                 bdd.registrarProductoDetalle(Integer.parseInt(idVenta), idProd, unidadesVendidas);
+                idProd = -1;
+                unidadesVendidas = 0;
                 txtConfirmarDatos.setText("");
                 txtNumProductosVenta.setText("");
                 //Opcional
                 txtBuscarProductoFacturacion.setText("");
+                // Volver a cargar la lista de productos
+                obtenerProductos();
                 // Mensaje de confirmacion
-                Toast.makeText(this, "Agregado con éxito!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Agregado con éxito!", Toast.LENGTH_SHORT).show();
 
             } catch (Exception ex) {
                 Toast.makeText(getApplicationContext(), "Error al procesar la solicitud: " + ex.toString(), Toast.LENGTH_LONG).show();
 
             }
         } else {
-            //Toast.makeText(this, "Algo salio mal...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingresa un producto y una cantidad", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void buscarProducto(View vista) {
+        // Limpiar lista
+        String buscarProducto = txtBuscarProductoFacturacion.getText().toString();
+        if (!buscarProducto.equals("")) {
+            listaProductos.clear();
+            productos = bdd.obtenerProductoNombre(buscarProducto);
+            if (productos != null) {
+                do {
+                    String nombre = productos.getString(1).toString();
+                    String precio = productos.getString(2).toString();
+                    String cantidad = productos.getString(4).toString();
+                    listaProductos.add(nombre + "   " + cantidad + " unidades   " + precio);
+                    ArrayAdapter<String> adaptadorProducto = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProductos);
+                    lstSeleccionarProducto.setAdapter(adaptadorProducto);
+                } while (productos.moveToNext());
+            } else {
+                listaProductos.clear();
+                ArrayAdapter<String> adaptadorProducto = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProductos);
+                lstSeleccionarProducto.setAdapter(adaptadorProducto);
+                Toast.makeText(this, "Sin resultados", Toast.LENGTH_SHORT).show();
+
+            }
+//            Toast.makeText(this, buscarProducto, Toast.LENGTH_SHORT).show();
+        } else {
+            obtenerProductos();
+        }
+
     }
 }

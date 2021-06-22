@@ -50,7 +50,7 @@ public class ClientesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Programacion de acciones cuando se da click en un elemento/item de la lista de clientes
                 //Toast.makeText(getApplicationContext(), "Seleccionaste la posicion"+position,
-                        //Toast.LENGTH_LONG).show();
+                //Toast.LENGTH_LONG).show();
                 clientesObtenidos.moveToPosition(position); //moviendo el cursor hacia la posicion donde se da clic
                 String idCliente = clientesObtenidos.getString(0);//obteniendo la informacion de cada uno de los campos de la fila cliente seleecionada
                 String cedulaCliente = clientesObtenidos.getString(1);
@@ -60,19 +60,17 @@ public class ClientesActivity extends AppCompatActivity {
                 String direccionCliente = clientesObtenidos.getString(5);
                 //Generando el objeto para abrir la ventana de edicion/eliminacion del cliente
                 //enviando parametros(id,cedula,apellido,nombre,telefonoo,direccion)
-                Intent ventanaEditarCliente = new Intent(getApplicationContext(),EditarClienteActivity.class);
-                ventanaEditarCliente.putExtra("id",idCliente);//pasando el id del cliente como parametro
-                ventanaEditarCliente.putExtra("cedula",cedulaCliente);//pasando la cedula del cliente como parametro
-                ventanaEditarCliente.putExtra("apellido",apellidoCliente);//pasando el apellido del cliente como parametro
-                ventanaEditarCliente.putExtra("nombre",nombreCliente);//pasando el nombre del cliente como parametro
-                ventanaEditarCliente.putExtra("telefono",telefonoCliente);//pasando el telefono del cliente como parametro
-                ventanaEditarCliente.putExtra("direccion",direccionCliente);//pasando la direccion del cliente como parametro
+                Intent ventanaEditarCliente = new Intent(getApplicationContext(), EditarClienteActivity.class);
+                ventanaEditarCliente.putExtra("id", idCliente);//pasando el id del cliente como parametro
+                ventanaEditarCliente.putExtra("cedula", cedulaCliente);//pasando la cedula del cliente como parametro
+                ventanaEditarCliente.putExtra("apellido", apellidoCliente);//pasando el apellido del cliente como parametro
+                ventanaEditarCliente.putExtra("nombre", nombreCliente);//pasando el nombre del cliente como parametro
+                ventanaEditarCliente.putExtra("telefono", telefonoCliente);//pasando el telefono del cliente como parametro
+                ventanaEditarCliente.putExtra("direccion", direccionCliente);//pasando la direccion del cliente como parametro
                 startActivity(ventanaEditarCliente);//solicitando que se abra la ventana de edicion o eliminacion del clientes
                 finish();
                 //Toast.makeText(getApplicationContext(), idCliente+"-"+cedulaCliente+"-"+nombreCliente+"-"+
-                  //      telefonoCliente+"-"+direccionCliente,Toast.LENGTH_LONG).show();
-
-
+                //      telefonoCliente+"-"+direccionCliente,Toast.LENGTH_LONG).show();
 
 
             }
@@ -117,18 +115,22 @@ public class ClientesActivity extends AppCompatActivity {
         {
             //Proceso para cuando se encuentren clientes registrados
             do {
-                String id=clientesObtenidos.getString(0).toString(); //capturando el string del cliente
+                String id = clientesObtenidos.getString(0).toString(); //capturando el string del cliente
                 String apellido = clientesObtenidos.getString(2).toString(); //Capturando el apellido del cliente
                 String nombre = clientesObtenidos.getString(3).toString(); //Capturando el nombre del cliente
                 String direccion = clientesObtenidos.getString(5).toString(); //Capturando el nombre del cliente
                 //construyendo las filas para presentar datos en el list view
-                listaCliente.add(id+": "+apellido+" "+nombre+" "+direccion);
+                listaCliente.add(id + ": " + apellido + " " + nombre + " " + direccion);
                 //Creando un adaptador para poder presentar los datos del listado de clientes (Java) en una lista simple XML
-                ArrayAdapter<String> adaptadorCliente= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaCliente);
+                ArrayAdapter<String> adaptadorCliente = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaCliente);
                 lstCliente.setAdapter(adaptadorCliente);//presentando el adaptador cliente dentro del list view
-            }while (clientesObtenidos.moveToNext());//validando si aun existe clientes dentro del cursor
+            } while (clientesObtenidos.moveToNext());//validando si aun existe clientes dentro del cursor
         } else {
             Toast.makeText((getApplicationContext()), "No existe clientes registrados", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void volver(View vista) {
+        finish();
     }
 }

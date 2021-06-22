@@ -50,10 +50,12 @@ public class VentasActivity extends AppCompatActivity {
         ventas = bdd.listarVentas();
         if (ventas != null) {
             do {
-                String id = ventas.getString(0).toString();
-                String dato1 = ventas.getString(1).toString();
-                String dato2 = ventas.getString(2).toString();
-                listaVentas.add("ID: " + id + " " + dato1 + " " + dato2);
+                String fecha = ventas.getString(1).toString();
+                String nombreCliente = ventas.getString(9) + " " + ventas.getString(10);
+                /*for (int i = 0; i < ventas.getColumnCount(); i++) {
+                    System.out.println("COL: " + i + " Datos: " + ventas.getColumnName(i));
+                }*/
+                listaVentas.add(nombreCliente + " | " + fecha);
                 ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaVentas);
                 lstVentas.setAdapter(adapter);
             } while (ventas.moveToNext());
@@ -73,10 +75,5 @@ public class VentasActivity extends AppCompatActivity {
     //Metodo para volver al menu principal
     public void volverMenuPrincipal(View vista) {
         finish();//cerrando ventana de nueva venta
-        //creando un objeto para manejar la ventana de ventas
-        Intent ventanaMenu = new Intent(getApplicationContext(), MenuActivity.class);
-        startActivity(ventanaMenu);//solicitando que se abra la ventana de gestion clientes
-
-
     }
 }

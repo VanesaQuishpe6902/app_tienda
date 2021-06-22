@@ -14,13 +14,12 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
         tools:ignore="MissingConstraints">
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
+
         <LinearLayout
-            android:layout_width="359dp"
+            android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -50,94 +49,123 @@
             android:paddingRight="30dp"
             android:translationZ="100dp">
 
-            <TextView
-                android:id="@+id/textView4"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:fontFamily="@font/aclonica"
-                android:gravity="center_horizontal"
-                android:text="BIENVENIDO CLIENTE"
-                android:textSize="24sp" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/txtCedulaCliente"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ingrese la cedula"
-                android:inputType="number" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/txtApellidoClienteEditar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ingrese los apellidos"
-                android:inputType="textPersonName" />
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:fontFamily="@font/aclonica"
+                        android:gravity="center_horizontal"
+                        android:text="GESTIÓN CLIENTES"
+                        android:textSize="24sp" />
 
-            <EditText
-                android:id="@+id/txtNombreClienteEditar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ingrese los nombres"
-                android:inputType="textPersonName" />
+                    <EditText
+                        android:id="@+id/txtCedulaCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Ingrese la cedula"
+                        android:inputType="number" />
 
-            <EditText
-                android:id="@+id/txtTelefonoClienteEditar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ingrese el teléfono"
-                android:inputType="phone" />
+                    <EditText
+                        android:id="@+id/txtApellidoClienteEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Ingrese los apellidos"
+                        android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/txtDireccionClienteEditar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ingrese la direccion"
-                android:inputType="textPersonName" />
+                    <EditText
+                        android:id="@+id/txtNombreClienteEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Ingrese los nombres"
+                        android:inputType="textPersonName" />
 
-            <LinearLayout
-                android:layout_width="329dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/txtTelefonoClienteEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Ingrese el teléfono"
+                        android:inputType="phone" />
 
-                <Button
-                    android:id="@+id/btnGuardarClientes"
-                    android:layout_width="155dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableLeft="@android:drawable/ic_menu_save"
-                    android:onClick="guardarCliente"
-                    android:text="Guardar"
-                    app:backgroundTint="#44DF4A" />
+                    <EditText
+                        android:id="@+id/txtDireccionClienteEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Ingrese la direccion"
+                        android:inputType="textPersonName" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnGuardarClientes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@android:drawable/ic_menu_save"
+                            android:onClick="guardarCliente"
+                            android:text="Guardar"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:backgroundTint="#44DF4A" />
 
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="" />
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
-                <Button
-                    android:id="@+id/btnCancelarClientes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableLeft="@android:drawable/ic_notification_clear_all"
-                    android:onClick="limpiarCampos"
-                    android:text="Cancelar"
-                    app:backgroundTint="#D34848" />
+                        <Button
+                            android:id="@+id/btnCancelarClientes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@android:drawable/ic_notification_clear_all"
+                            android:onClick="limpiarCampos"
+                            android:text="Cancelar"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:backgroundTint="#D34848" />
 
-            </LinearLayout>
+                    </LinearLayout>
 
-            <ListView
-                android:id="@+id/lstClientes"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                    <ListView
+                        android:id="@+id/lstClientes"
+                        android:layout_width="match_parent"
+                        android:layout_height="187dp"
+                        android:layout_marginBottom="20dp">
+
+                    </ListView>
+
+                    <Button
+                        android:id="@+id/button10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:onClick="volver"
+                        android:text="Volver"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="#009688" />
+
+                </LinearLayout>
+            </ScrollView>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
