@@ -131,7 +131,7 @@
             android:background="@drawable/bt_login"
             android:onClick="registrarUsuario"
             android:text="Registrar Cuenta"
-            app:backgroundTint="#1E88E5" />
+            android:textColor="#FFFFFF" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -140,10 +140,9 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bt_login"
+            android:background="@drawable/bt_login2"
             android:onClick="cerrarPantallaRegistro"
-            android:text="Cancelar"
-            app:backgroundTint="#E53935" /><Space
+            android:text="Cancelar" /><Space
         android:layout_width="match_parent"
         android:layout_height="25dp" />
 

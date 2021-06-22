@@ -49,7 +49,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             ");";
     // SEMILLA
     private static final String ingresarConsumidorFinal = "INSERT INTO cliente (cedula_cli, apellido_cli, nombre_cli, telefono_cli,direccion_cli) " +
-            "VALUES ('1111111111','Final','Consumidor','02222222','Ninguno')";
+            "VALUES ('1111111111','Consumidor','Final','02222222','Ninguno')";
 
     //CONSTRUCTOR
     public BaseDatos(Context contexto) {
@@ -140,7 +140,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     //PROCESO 6: metodo para consultar cliente existente en la BDD
     public Cursor obtenerClientes() {
         SQLiteDatabase miBDD = getWritableDatabase(); //Llamando a la base de datos
-        Cursor clientes = miBDD.rawQuery("select * from cliente;", null);
+        Cursor clientes = miBDD.rawQuery("select * from cliente WHERE id_cli > 1;", null);
         if (clientes.moveToFirst()) {//verificando que el objeto usuario tenga resultados
             return clientes; //retornar el cursor que contiene el listado de cliente
         } else {

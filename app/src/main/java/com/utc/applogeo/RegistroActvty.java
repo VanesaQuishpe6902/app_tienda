@@ -3,6 +3,8 @@ package com.utc.applogeo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -47,15 +49,37 @@ public class RegistroActvty extends AppCompatActivity {
         String email = txtEmailRegistro.getText().toString();
         String password = txtPasswordRegistro.getText().toString();
         String passwordConfirmada = txtPasswordConfirmada.getText().toString();
-        if (password.equals(passwordConfirmada)) //valida que las contraseñas sean iguales
-        {//cuando la condicion es vdd se realiza el proceso de insercion
+        int errors = 0;
+        if (apellido.isEmpty() || !isWord(apellido)) {
+            errors++;
+            txtApellidoRegistro.setError("Ingrese un apellido válido");
+        }
+        if (nombre.isEmpty() || !isWord(nombre)) {
+            errors++;
+            txtNombreRegistro.setError("Ingrese un nombre válido");
+        }
+        if (email.isEmpty() || !isValidEmail(email)) {
+            errors++;
+            txtEmailRegistro.setError("Ingrese un email válido");
+        }
+        if (password.isEmpty() || !isPassLetterNumber(password) || password.length() < 8) {
+            errors++;
+            txtPasswordRegistro.setError("La contraseña debe contener al menos 8 caracteres entre letras y numeros");
+        }
+        if (passwordConfirmada.isEmpty()) {
+            txtPasswordConfirmada.setError("Debe confirmar la contraseña");
+        }
+        if (!password.equals(passwordConfirmada)) {
+            errors++;
+            txtPasswordConfirmada.setError("Las contraseñas no coinciden");
+        }
+        if (errors == 0) {
             miBDD.agregarUsuario(apellido, nombre, email, password);
             Toast.makeText(getApplicationContext(), "Usuario alamacenado exitosamente", Toast.LENGTH_LONG).show(); //Mostrando un msm de confirmacion
-        } else {//cuando la condicion es falsase envia un msm de errror
-            Toast.makeText(getApplicationContext(), "La contraseña ingresasda no coincide", Toast.LENGTH_LONG).show();//MUESTRA EL MSM DE ERROR
+            this.cerrarPantallaRegistro(vista);
+        } else {
+            Toast.makeText(this, "Upss... No se pudo registar tu información", Toast.LENGTH_SHORT).show();
         }
-        //Cerrar la pantalla de registro y regresar a la pantalla de inicio
-        this.cerrarPantallaRegistro(vista);
 
     }
 
@@ -63,9 +87,8 @@ public class RegistroActvty extends AppCompatActivity {
         return Pattern.matches(".*[ a-zA-Z-ñÑáéíóúÁÉÍÓÚ].*", word);
     }
 
-    // Validar que solo contenga texto y espacios
-    private boolean isEmailInst(String correo) {
-        return Pattern.matches("^[\\w-]+(\\.[\\w-]+)*[@a-zA-Z]+.*", correo);
+    public boolean isValidEmail(String email) {
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
     // Validar que solo contenga texto y espacios
