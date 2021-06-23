@@ -138,7 +138,7 @@
                             android:id="@+id/textView52"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Paso 2 Ingresa la cantidad" />
+                            android:text="Paso 2 Ingresa la cantidad y agrega" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

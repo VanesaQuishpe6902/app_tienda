@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 /*
 autor: Vanesa Quishpe
 creado: 09/06/2021
@@ -76,6 +77,9 @@ public class ClientesActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean isWord(String word) {
+        return Pattern.matches(".*[ a-zA-Z-ñÑáéíóúÁÉÍÓÚ].*", word);
+    }
 
     //PROCESO 1: metodo para vaciar cualquier datos que este en los campos del formulario registro cliente
     public void limpiarCampos(View vista) {
@@ -95,7 +99,29 @@ public class ClientesActivity extends AppCompatActivity {
         String telefono = txtTelefonoCliente.getText().toString();
         String direccion = txtDireccionCliente.getText().toString();
         //Validar los datos
-        if (!cedula.equals("") && !apellido.equals("") && !nombre.equals("") && !telefono.equals("") && !direccion.equals("")) {
+        int error=0;
+        if (cedula.isEmpty()|| cedula.length() != 10) {
+            error++;
+            txtCedulaCliente.setError("La cedula debe contener 10 digitos ");
+        }
+        if (apellido.isEmpty() || !isWord(apellido)) {
+            error++;
+            txtApellidoCliente.setError("Ingrese un apellido válido");
+        }
+        if (nombre.isEmpty() || !isWord(nombre)) {
+            error++;
+            txtNombreCliente.setError("Ingrese un nombre válido");
+        }
+        if (telefono.isEmpty()|| telefono.length() !=  10) {
+            error++;
+            txtTelefonoCliente.setError("El telefono debe contener 10 digitos ");
+        }
+        if (direccion.isEmpty()) {
+            error++;
+            txtDireccionCliente.setError("Campo requerido");
+        }
+
+        if (error == 0) {
             bdd.agregarCliente(cedula, apellido, nombre, telefono, direccion);
             limpiarCampos(null);
             Toast.makeText(getApplicationContext(), "Cliente registrado exitosamente", Toast.LENGTH_LONG).show();
