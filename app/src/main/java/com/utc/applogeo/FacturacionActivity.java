@@ -19,6 +19,14 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/*
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
+creado: 21/06/2021
+modificado: 21/06/2021
+descripcion: Actividad para gestionar los factura dentro la base de datos SQLite
+*/
+
+
 public class FacturacionActivity extends AppCompatActivity {
     // Formatear valores double
     String pattern = "##.##";

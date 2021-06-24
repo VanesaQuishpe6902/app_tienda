@@ -15,6 +15,13 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+/*
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
+creado: 2106/2021
+modificado: 21/06/2021
+descripcion: Actividad para gestionar los clientes dentro la base de datos SQLite
+*/
+
 
 public class AgregarProductoFactura extends AppCompatActivity {
     // Formatear valores double

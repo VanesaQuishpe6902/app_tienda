@@ -13,7 +13,7 @@ import android.os.Handler;
 
 
 /*
-autor: Vanesa Quishpe
+autor: Vanesa Quishpe, Vaca Alex, Angel Tapia
 creado: 02/01/2021
 modificado: 02/01/2021
 descripcion: Ventana de bienvenida que es visible por 4segundos

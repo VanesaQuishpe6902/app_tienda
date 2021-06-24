@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 /*
-autor: Vanesa Quishpe
+autor: Vanesa Quishpe, Vaca Alex, Angel Tapia
 creado: 12/05/2021
 modificado: 19/06/2021
 descripcion: Gestionar la bdd de la app

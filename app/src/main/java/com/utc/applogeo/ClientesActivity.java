@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 /*
-autor: Vanesa Quishpe
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
 creado: 09/06/2021
 modificado: 16/06/2021
 descripcion: Actividad para gestionar los clientes dentro la base de datos SQLite

@@ -10,6 +10,12 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/*
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
+creado: 21/06/2021
+modificado: 21/06/2021
+descripcion: Actividad para gestionar el metodo de venta de la factura
+*/
 
 public class MetodoVentaActivity extends AppCompatActivity {
     BaseDatos bdd;

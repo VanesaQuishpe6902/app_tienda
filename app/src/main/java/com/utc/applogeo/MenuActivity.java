@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 /*
-autor: Vanesa Quishpe
+autor: Vanesa QuishpeVaca Alex, Angel Tapia
 creado: 19/05/2021
 modificado: 09/06/2021
 descripcion: Activity  para acceder a los diferentes opciones de la aplicacion

@@ -15,6 +15,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+/*
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
+creado: 20/06/2021
+modificado: 20/06/2021
+descripcion: Actividad para agregar los productos dentro la factura trayendo datos desde la base de datos
+*/
+
 
 public class VentasActivity extends AppCompatActivity {
     // Lista

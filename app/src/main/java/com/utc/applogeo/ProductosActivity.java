@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
 /*
-autor: Vanesa Quishpe
+autor: Vanesa QuishpeVaca Alex, Angel Tapia
 creado: 14/06/2021
 modificado: 14/06/2021
 descripcion: Actividad para gestionar los productos dentro la base de datos SQLite

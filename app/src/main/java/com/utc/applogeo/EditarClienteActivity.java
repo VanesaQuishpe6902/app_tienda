@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 /*
-autor: Vanesa Quishpe
+autor: Vanesa Quishpe,Vaca Alex, Angel Tapia
 creado: 16/06/2021
 modificado: 17/06/2021
 descripcion: Actividad para procesar el edicion o eliminacio de clientes en SQLite se reciben como parametros los datos del

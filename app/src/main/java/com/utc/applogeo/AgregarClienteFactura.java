@@ -15,6 +15,13 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+/*
+autor: Vanesa Quishpe, Alex Vaca, Tapia Agel
+creado: 21/06/2021
+modificado: 21/06/2021
+descripcion: Actividad para agregar los clientes dentro la factura trayendo datos desde la base de datos
+*/
+
 
 public class AgregarClienteFactura extends AppCompatActivity {
     BaseDatos bdd;

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 /*
-autor: Vanesa Quishpe
+autor: Vanesa Quishpe, Vaca Alex, Angel Tapia
 creado: 12/05/2021
 modificado: 13/05/2021
 descripcion: Pantalla para regstrar usuarios y almacenar en una base de datos sqlite

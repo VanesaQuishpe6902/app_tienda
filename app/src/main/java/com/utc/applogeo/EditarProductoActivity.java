@@ -21,6 +21,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
+/*
+ * Autores: Vanesa Quishpe, Angel Tapia, Alex Vaca
+ * Creado: 20/06/2021
+ * Editado: 20/06/2021
+ * Descripción: Actividad para procesar el edicion o eliminacio de clientes en SQLite se reciben como parametros los datos del
+producto seleccionado en el list view(ListadoProductos) de la ventana Gestion Productos
+ *
+ * */
 
 public class EditarProductoActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
